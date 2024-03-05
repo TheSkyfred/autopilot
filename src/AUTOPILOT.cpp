@@ -3,7 +3,6 @@
 #include "Sensors.h"
 #include "LEDNBuzzer.cpp"
 
-
 // put function declarations here:
 
 void setup()
