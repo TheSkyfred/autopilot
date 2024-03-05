@@ -1,69 +1,54 @@
-//This file is for WAYPOINTS MANAGEMENT
+//THIS FILE IS FOR WAYPOINT MANAGEMENT
+
+#include "def.h"
+#include "Waypoints.h"
+
+
+// Définir les waypoints
+Point3D waypoint[8] = {
+{40.000, -105.000, 0.0},  //waypoint0 TAKEOFF
+{40.100, -105.100, 100.0}, //waypoint1
+{40.200, -105.200, 150.0},//waypoint2
+{40.300, -105.300, 200.0},//waypoint3
+{40.400, -105.400, 250.0},//waypoint4
+{40.500, -105.500, 300.0},//waypoint5
+{40.600, -105.600, 350.0},//waypoint6 APPROACH
+{40.700, -105.700, 400.0},//waypoint7 LANDING
+};
 
 
 
-//WAYPOINT'S COORDINATES ARE IN ANOTHER FILE 
+// Définir les variables pour les waypoints actuels et suivants
+Point3D currentWaypoint = waypoint[0];
+Point3D nextWaypoint = waypoint[1];
 
+// Fonction pour mettre à jour les waypoints
+void updateWaypoints() {
 
-//For each WP : Lat, Lgn, Alt
+     if ( BAT_LOW == 1 ) { //condition pour aller directement à l'approche
+      nextWaypoint = waypoint[6]; //GOTOApproach WE HAVE TO THINK TO ANOTHER SOLUTION
+     }
 
-Takeoff_Point ; 
-Waypoint_1;
-Waypoint_2;
-Waypoint_3;
-Waypoint_4;
-Approach_Point;
-Landing_Point;
+  // Vérifier si le prochain waypoint est atteint (votre condition ici)
+  else { //condition d'atteinte du waypoint
 
+    // Mettre à jour les waypoints
+    currentWaypoint = nextWaypoint;
 
-Takeoff_GPS_alt
+    // Déterminer le prochain waypoint en fonction de la logique de votre application
+    int i = 0; // Variable d'itération
 
-
-
-//Fonction to calculate the tilt between the actual Current_GPS_Altitude and the Next_Waypoint_Altitude
-
-// Convertir les coordonnées en radians
-double toRadians(double degree) {
-    return degree * M_PI / 180.0;
+    while (i < 7) {
+      if (currentWaypoint.latitude == waypoint[i].latitude &&
+          currentWaypoint.longitude == waypoint[i].longitude &&
+          currentWaypoint.altitude == waypoint[i].altitude) {
+        nextWaypoint = waypoint[i + 1];
+        break;  // Sortir de la boucle dès qu'on trouve le waypoint actuel
+      }
+      i++;
+    }
+  }
 }
 
-// Calculer la distance euclidienne entre deux points GPS (en mètres)
-double calculateDistance(const Point3D& point1, const Point3D& point2) {
-    double lat1 = toRadians(point1.latitude);
-    double lon1 = toRadians(point1.longitude);
-    double lat2 = toRadians(point2.latitude);
-    double lon2 = toRadians(point2.longitude);
 
-    // Rayon de la Terre en mètres (approximation)
-    const double radius = 6371000.0;
 
-    // Formule de distance euclidienne
-    double dx = (lon2 - lon1) * cos(0.5 * (lat2 + lat1));
-    double dy = lat2 - lat1;
-
-    return radius * sqrt(dx * dx + dy * dy);
-}
-
-// Calculer l'angle entre deux points GPS (en degrés)
-double calculateAngle(const Point3D& point1, const Point3D& point2) {
-    double distance = calculateDistance(point1, point2);
-    double altitudeDiff = point2.altitude - point1.altitude;
-
-    // Utiliser la trigonométrie pour calculer l'angle
-    double angle = atan2(altitudeDiff, distance) * 180.0 / M_PI;
-
-    return angle;
-}
-
-int main() {
-    // Exemple d'utilisation
-    Point3D pointA = { 40.123, -105.456, 100.0 };
-    Point3D pointB = { 40.234, -105.567, 150.0 };
-
-    double angle = calculateAngle(pointA, pointB);
-
-    // Afficher l'angle
-    printf("Angle entre les points A et B : %.2f degrés\n", angle);
-
-    return 0;
-}

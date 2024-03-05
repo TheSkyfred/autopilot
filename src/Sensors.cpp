@@ -1,48 +1,41 @@
+// THIS FILE IS FOR SENSORS MANAGEMENT
 
-//GPS
+#include "Barometer.h"
+#include "Compass.h"
+#include "GPS.h"
+#include "Gyroscope.h"
+#include "LCD.h"
+#include "Telemetry.h"
+#include "Servos.h"
+#include "Sonar.h"
 
-//BME280
-
-
-//SONAR
-
-//GYROSCOPE & ACCELEROMETER
-
-
-
-Void Sensors_initi () {
-
-switch (Sensors_initialisation) {
-
-case GPS :
-
-GPS_init();
-
-case compass :
-
-Case BME280 :
-BME280_init();
-
-
-
-case SONAR :
-Sonar_init();
-
-
-case GYROSCOPE :
-
-Gyroscope_init();
-
-}
+// Initialization of all captors
+void Sensors_init()
+{
+    GPS_init();
+    Barometer_init();
+    Telemetry_init();
+    LCD_init();
 }
 
-Void Sensors_Update() {
+void Sensors_update()
+{
 
-switch case (sensors_Update_Task) {
+    static uint8_t taskOrder = 0; // never call all functions in the same loop, to avoid high delay spikes
+    switch (taskOrder)
+    {
 
-
-    
-} 
-
-
+    case 0:
+        taskOrder++;
+        GPS_update();
+        break;
+    case 1:
+        taskOrder++;
+        void Barometer_update();
+        break;
+    case 2:
+        taskOrder++;
+        void Telemetry_update();
+        break;
+    }
 }
