@@ -1,7 +1,6 @@
 // THIS FILE IS FOR COMPASS
 
 #include "Compass.h"
-#include "def.h"
 
 #include <Adafruit_HMC5883_U.h>
 

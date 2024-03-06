@@ -1,7 +1,6 @@
 // THIS FILE IS FOR GYROSCOPE
 
 #include "Gyroscope.h"
-#include "def.h"
 
 Adafruit_MPU6050 mpu;
 

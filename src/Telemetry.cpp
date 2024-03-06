@@ -1,6 +1,5 @@
 // THIS FILE IS FOR TELEMETRY
 
-#include "def.h"
 #include "Telemetry.h"
 #include <esp_now.h>
 #include <WiFi.h>
@@ -8,8 +7,7 @@
 #include <Wire.h>
 #include <SPI.h>
 
-//Fill the MAC adress of the reciever board
-uint8_t RxMACaddress[] = { 0x7C, 0x9E, 0xBD, 0xD9, 0xA0, 0xFD };
+#include "def.h"
 
 void Telemetry_init(){
   WiFi.mode(WIFI_STA);
@@ -46,11 +44,9 @@ void Telemetry_update(){
 }
 
 
-//-------------------------------------------------------------------------------------
 void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status)  //callback function
 {
   Serial.print("\r\nLast Packet Send Status:\t");
   Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
 }
-//-------------------------------------------------------------------------------------
 

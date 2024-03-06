@@ -3,6 +3,9 @@
 #include "Sensors.h"
 #include "LEDNBuzzer.cpp"
 
+
+
+
 // put function declarations here:
 
 void setup()
@@ -17,9 +20,8 @@ void setup()
 
 void loop()
 {
-
-
   Sensors_update();
 }
 
 // put function definitions here:
+

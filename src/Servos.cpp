@@ -4,10 +4,11 @@
 //1 elevator
 //1 rudder
 
+/*
 #include "Servos.h"
 #include "def.h"
 #include <SimpleKalmanFilter.h>
-#include <Servo.h>
+#include <ESP32Servo.h>
 
 
 Servo Rollservo;
@@ -25,7 +26,7 @@ int servoYaw = 7;
 int angle;  // Variable to store the servo angle
 int gyro_pitch_input;
 int gyro_roll_input;// Variable to store the gyro pitch input
-int gyro_yaw_input
+int gyro_yaw_input;
 int acc_pitch_input;
 int acc_roll_input;
 int acc_yaw_input;// Variable to store the accelerometer pitch input
@@ -111,3 +112,5 @@ void Yaw_stabilization(){
   
       
         
+
+        */

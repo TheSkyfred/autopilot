@@ -2,8 +2,10 @@
 #ifndef DEF_H_
 #define DEF_H_
 
-float BMP_temp; // BMP280 TEMPERATURE IN CELCIUS
-float BMP_alt;  // BMP280 ALTITUDE IN METERS
+//Fill the MAC adress of the reciever board
+uint8_t RxMACaddress[] = { 0x7C, 0x9E, 0xBD, 0xD9, 0xA0, 0xFD };
+
+
 
 float GPS_lat;
 float GPS_lng;

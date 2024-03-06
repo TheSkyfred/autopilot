@@ -1,8 +1,8 @@
 //THIS FILE IS FOR WAYPOINT MANAGEMENT
 
-#include "def.h"
 #include "Waypoints.h"
 
+/*
 
 // Définir les waypoints
 Point3D waypoint[8] = {
@@ -51,4 +51,4 @@ void updateWaypoints() {
 }
 
 
-
+*/

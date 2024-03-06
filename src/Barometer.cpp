@@ -3,6 +3,9 @@
 #include "Barometer.h"
 #include "def.h"
 
+float BMP_temp; // BMP280 TEMPERATURE IN CELCIUS
+float BMP_alt;  // BMP280 ALTITUDE IN METERS
+
 void Barometer_init()
 {
 
